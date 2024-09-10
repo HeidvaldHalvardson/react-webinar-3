@@ -5,7 +5,12 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.codes = new Set()
+    this.counter = 1
+
+    this.state.list.forEach((item) => this.codes.add(item.code))
   }
+
 
   /**
    * Подписка слушателя на изменения состояния
@@ -38,13 +43,22 @@ class Store {
     for (const listener of this.listeners) listener();
   }
 
+  getUniqCode() {
+    while (this.codes.has(this.counter)) {
+      this.counter++;
+    }
+
+    this.codes.add(this.counter);
+    return this.counter;
+  }
+
   /**
    * Добавление новой записи
    */
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: this.state.list.length + 1, title: 'Новая запись' }],
+      list: [...this.state.list, { code: this.getUniqCode(), title: 'Новая запись' }],
     });
   }
 
@@ -69,6 +83,11 @@ class Store {
       list: this.state.list.map(item => {
         if (item.code === code) {
           item.selected = !item.selected;
+          if (item.selected) {
+            item.counter = item.counter ? item.counter + 1 : 1;
+          }
+        } else {
+          item.selected = false;
         }
         return item;
       }),
