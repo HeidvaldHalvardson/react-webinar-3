@@ -5,10 +5,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
-    this.codes = new Set()
-    this.counter = 1
-
-    this.state.list.forEach((item) => this.codes.add(item.code))
+    this.code = initState.list.length > 0 ? Math.max(...initState.list.map(item => item.code)) : 1;
   }
 
 
@@ -44,12 +41,7 @@ class Store {
   }
 
   getUniqCode() {
-    while (this.codes.has(this.counter)) {
-      this.counter++;
-    }
-
-    this.codes.add(this.counter);
-    return this.counter;
+    return ++this.code
   }
 
   /**

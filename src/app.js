@@ -9,6 +9,24 @@ import './styles.css';
 function App({ store }) {
   const list = store.getState().list;
 
+  const onClickHandler = (e, code) => {
+    e.stopPropagation();
+    store.deleteItem(code)
+  }
+
+  const getTextForSelected = (count) => {
+    let text = 'раз'
+    const lastDigit = count % 10
+    const lastTwoDigits = count % 100
+
+    if (lastDigit >= 2 && lastDigit <= 4 && !(lastTwoDigits >= 12 && lastTwoDigits <= 14)) {
+      text = 'раза'
+    }
+
+    return ` | Выделяли ${count} ${text}`
+  }
+
+
   return (
     <div className="App">
       <div className="App-head">
@@ -26,9 +44,9 @@ function App({ store }) {
                 onClick={() => store.selectItem(item.code)}
               >
                 <div className="Item-code">{item.code}</div>
-                <div className="Item-title">{item.title}{item.counter ? ` | Выделяли ${item.counter} раз` : null}</div>
+                <div className="Item-title">{item.title}{item.counter ? getTextForSelected(item.counter) : null}</div>
                 <div className="Item-actions">
-                  <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
+                  <button onClick={(e) => onClickHandler(e, item.code)}>Удалить</button>
                 </div>
               </div>
             </div>
