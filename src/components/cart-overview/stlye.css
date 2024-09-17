@@ -1,0 +1,15 @@
+.CartOverview {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px dashed #ccc;
+}
+
+.CartOverview-count {
+  margin-left: 15px;
+  font-weight: 700;
+}
+
+.CartOverview-actions {
+  padding: 20px;
+}
