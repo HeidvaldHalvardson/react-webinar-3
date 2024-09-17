@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Item from '../item';
 import './style.css';
 
-function List({ list, onAddToCart = (code) => {}}) {
+function List({ list, onAddToCart = (_) => {}}) {
   return (
     <div className="List">
       {list.map(item => (
