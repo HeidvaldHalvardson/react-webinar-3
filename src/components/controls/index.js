@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.css'
 
 function Controls(props) {
   const {
@@ -9,7 +10,10 @@ function Controls(props) {
   } = props
 
   return (
-    <button className={className} onClick={() => onClickHandler()}>
+    <button
+      className={`Controls ${className}`}
+      onClick={() => onClickHandler()}
+    >
       {children}
     </button>
   );
