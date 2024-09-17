@@ -56,7 +56,7 @@ const CartModal = (props) => {
       <div className="CartModal">
         {
           cart.length > 0
-          ? cart.map((item, index) => (<p>{item.title}</p>))
+          ? cart.map((item) => (<p>{item.title}</p>))
             : <p>Ваша корзина пуста</p>
         }
       </div>
