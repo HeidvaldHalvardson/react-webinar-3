@@ -83,6 +83,46 @@ class Store {
       }),
     });
   }
+
+  /**
+   * Добавление товара в корзину по коду
+   * @param code
+   */
+  addItemToCart(code) {
+    const product = this.state.list.find(item => item.code === code);
+    const cartItem = this.state.cart.find(item => item.code === code);
+
+    if (cartItem) {
+      this.setState({
+        ...this.state,
+        cart: this.state.cart.map((item) => {
+          if (item.code === code) {
+            return {
+              ...item,
+              count: item.count + 1,
+            }
+          }
+          return item;
+        })
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        cart: [...this.state.cart, { ...product, count: 1}]
+      })
+    }
+  }
+
+  /**
+   * Удаление товара из корзины по коду
+   * @param code
+   */
+  deleteItemFromCart(code) {
+    this.setState({
+      ...this.state,
+      cart: this.state.cart.filter(item => item.code !== code),
+    });
+  }
 }
 
 export default Store;
