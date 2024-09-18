@@ -3,11 +3,14 @@ import Modal from "../modal";
 import Head from "../head";
 import Controls from "../controls";
 import PropTypes from "prop-types";
+import CartList from "../cart-list";
+import './style.css'
 
 const CartModal = (props) => {
   const {
     cart,
     onCloseModal = () => {},
+    onDeleteFromCart = (_) => {},
     isOpen
   } = props
 
@@ -56,8 +59,8 @@ const CartModal = (props) => {
       <div className="CartModal">
         {
           cart.length > 0
-          ? cart.map((item) => (<p>{item.title}</p>))
-            : <p>Ваша корзина пуста</p>
+          ? <CartList cart={cart} onDeleteFromCart={onDeleteFromCart} />
+          : <p className="CartModal-empty">Ваша корзина пуста</p>
         }
       </div>
     </Modal>
@@ -73,7 +76,8 @@ CartModal.propTypes = {
       count: PropTypes.number,
     }),
   ).isRequired,
-  onCloseModal: PropTypes.func,
+  onCloseModal: PropTypes.func.isRequired,
+  onDeleteFromCart: PropTypes.func,
   isOpen: PropTypes.bool,
 };
 

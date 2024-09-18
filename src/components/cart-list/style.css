@@ -1,0 +1,21 @@
+.CartList {
+  display: flex;
+  flex-direction: column;
+}
+
+.CartList-Item {
+  border-bottom: 1px dashed #ccc;
+}
+
+.CartList-Item:first-child {
+  border-top: 1px dashed #ccc;
+}
+
+.CartList-total {
+  font-weight: 700;
+  margin-left: 670px;
+  margin-right: 100px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
