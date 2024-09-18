@@ -17,8 +17,12 @@ function App({ store }) {
   const [isModal, setIsModal] = useState(false);
 
   const callbacks = {
-    onAddCart: useCallback((code) => {
+    onAddToCart: useCallback((code) => {
       store.addItemToCart(code)
+    }, [store]),
+
+    onDeleteFromCart: useCallback((code) => {
+      store.deleteItemFromCart(code)
     }, [store]),
 
     onShowCart: useCallback(() => {
@@ -39,12 +43,12 @@ function App({ store }) {
       />
       <List
         list={list}
-        onAddToCart={callbacks.onAddCart}
+        onClickHandler={callbacks.onAddToCart}
       />
       {isModal && <CartModal
         cart={cart}
         onCloseModal={callbacks.onCloseCart}
-        onShowCart={callbacks.onShowCart}
+        onDeleteFromCart={callbacks.onDeleteFromCart}
         isOpen={isModal}
       />}
     </PageLayout>

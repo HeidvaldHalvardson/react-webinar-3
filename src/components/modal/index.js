@@ -51,4 +51,4 @@ Modal.propTypes = {
   isClosing: PropTypes.bool,
 };
 
-export default React.memo(Modal);
+export default Modal;

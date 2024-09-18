@@ -16,6 +16,10 @@
   margin-left: auto;
 }
 
+.Item-count {
+  margin-left: 62px;
+}
+
 .Item-actions {
   display: flex;
   justify-content: flex-end;

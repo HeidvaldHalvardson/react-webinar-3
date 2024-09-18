@@ -2,8 +2,8 @@ import React from 'react';
 import Controls from "../controls";
 import PropTypes from "prop-types";
 import {cn as bem} from '@bem-react/classname';
-import './stlye.css'
 import {plural} from "../../utils/plural";
+import './stlye.css'
 
 const CartOverview = (props) => {
   const {
@@ -19,11 +19,16 @@ const CartOverview = (props) => {
     <div className={cn()}>
       <div>
         В корзине:
-        <span className={cn('count')}>{totalCount > 0 ? `${totalCount} ${plural(totalCount, {
-          one: 'товар',
-          few: 'товара',
-          many: 'товаров',
-        })} / ${totalPrice} ₽` : 'пусто'}</span>
+        <span className={cn('count')}>
+          {totalCount > 0
+            ? `${totalCount} ${plural(totalCount, {
+              one: 'товар',
+              few: 'товара',
+              many: 'товаров',
+            })} / ${totalPrice} ₽`
+            : 'пусто'
+          }
+        </span>
       </div>
       <div className={cn('actions')}>
         <Controls onClickHandler={onShowCart}>
