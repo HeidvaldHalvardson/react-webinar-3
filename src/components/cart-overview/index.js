@@ -8,24 +8,24 @@ import './stlye.css'
 const CartOverview = (props) => {
   const {
     cart,
+    cartUniqueCount,
+    cartTotalPrice,
     onShowCart = () => {}
   } = props
 
   const cn = bem('CartOverview')
-  const totalCount = cart.reduce((total, item) => total + item.count, 0);
-  const totalPrice = cart.reduce((total, item) => total + (item.price * item.count), 0);
 
   return (
     <div className={cn()}>
       <div>
         В корзине:
         <span className={cn('count')}>
-          {totalCount > 0
-            ? `${totalCount} ${plural(totalCount, {
+          {cartUniqueCount > 0
+            ? `${cartUniqueCount} ${plural(cartUniqueCount, {
               one: 'товар',
               few: 'товара',
               many: 'товаров',
-            })} / ${totalPrice} ₽`
+            })} / ${cartTotalPrice.toLocaleString()} ₽`
             : 'пусто'
           }
         </span>
@@ -48,7 +48,9 @@ CartOverview.propTypes = {
       count: PropTypes.number,
     }),
   ).isRequired,
-  onShowCart: PropTypes.func
+  onShowCart: PropTypes.func,
+  cartUniqueCount: PropTypes.number,
+  cartTotalPrice: PropTypes.number,
 };
 
 export default React.memo(CartOverview);

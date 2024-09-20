@@ -5,14 +5,14 @@ import {cn as bem} from '@bem-react/classname';
 import './style.css';
 
 
-function Item(props) {
+function CartItem(props) {
   const {
     item,
     className,
     onClickHandler = () => {},
   } = props
 
-  const cn = bem('Item')
+  const cn = bem('CartItem')
 
   return (
     <div
@@ -25,23 +25,27 @@ function Item(props) {
       <div className={cn('price')}>
         {item.price.toLocaleString()}&nbsp;₽
       </div>
+      <div className={cn('count')}>
+        {item.count} шт
+      </div>
       <div className={cn('actions')}>
         <Controls onClickHandler={onClickHandler}>
-          Добавить
+          Удалить
         </Controls>
       </div>
     </div>
   );
 }
 
-Item.propTypes = {
+CartItem.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
+    count: PropTypes.number,
   }).isRequired,
   className: PropTypes.string,
   onClickHandler: PropTypes.func,
 };
 
-export default React.memo(Item);
+export default React.memo(CartItem);

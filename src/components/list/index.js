@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Item from '../item';
 import './style.css';
 
-function List({ list, onClickHandler = (_) => {}}) {
+function List({ list, itemComponent: ItemComponent = Item, onClickHandler = (_) => {}}) {
   return (
     <div className="List">
       {list.map(item => (
-        <Item
+        <ItemComponent
           key={item.code}
           className="List-item"
           item={item}
@@ -24,6 +24,7 @@ List.propTypes = {
       code: PropTypes.number,
     }),
   ).isRequired,
+  itemComponent: PropTypes.elementType,
   onClickHandler: PropTypes.func,
 };
 

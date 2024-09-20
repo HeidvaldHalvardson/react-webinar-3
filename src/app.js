@@ -13,6 +13,8 @@ import CartModal from "./components/cart-modal";
 function App({ store }) {
   const list = store.getState().list;
   const cart = store.getState().cart;
+  const cartUniqueCount = store.getState().cartUniqueCount;
+  const cartTotalPrice = store.getState().cartTotalPrice;
 
   const [isModal, setIsModal] = useState(false);
 
@@ -35,23 +37,28 @@ function App({ store }) {
   }
 
   return (
-    <PageLayout>
-      <Head title="Магазин" />
-      <CartOverview
-        cart={cart}
-        onShowCart={callbacks.onShowCart}
-      />
-      <List
-        list={list}
-        onClickHandler={callbacks.onAddToCart}
-      />
+    <>
+      <PageLayout>
+        <Head title="Магазин" />
+        <CartOverview
+          cart={cart}
+          cartUniqueCount={cartUniqueCount}
+          cartTotalPrice={cartTotalPrice}
+          onShowCart={callbacks.onShowCart}
+        />
+        <List
+          list={list}
+          onClickHandler={callbacks.onAddToCart}
+        />
+      </PageLayout>
       {isModal && <CartModal
         cart={cart}
+        cartTotalPrice={cartTotalPrice}
         onCloseModal={callbacks.onCloseCart}
         onDeleteFromCart={callbacks.onDeleteFromCart}
         isOpen={isModal}
       />}
-    </PageLayout>
+    </>
   );
 }
 

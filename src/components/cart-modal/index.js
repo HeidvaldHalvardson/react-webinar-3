@@ -1,19 +1,21 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import Modal from "../modal";
 import Head from "../head";
 import Controls from "../controls";
 import PropTypes from "prop-types";
 import CartList from "../cart-list";
+import {cn as bem} from "@bem-react/classname";
 import './style.css'
 
 const CartModal = (props) => {
   const {
     cart,
+    cartTotalPrice,
     onCloseModal = () => {},
     onDeleteFromCart = (_) => {},
     isOpen
   } = props
 
+  const cn = bem('CartModal')
   const [isMounted, setIsMounted] = useState(false)
   const [isClosing, setIsClosing] = useState(false)
   const timerRef = useRef(null)
@@ -44,26 +46,40 @@ const CartModal = (props) => {
     }
   }, [isOpen, setIsMounted, onKeyDown]);
 
+  const onContentHandler = (e) => {
+    e.stopPropagation()
+  }
+
   return (
-    <Modal
-      onCloseModal={onCloseHandler}
-      isOpen={isOpen}
-      isMounted={isMounted}
-      isClosing={isClosing}
+    <div
+      className={
+        cn({
+          show: isMounted && !isClosing && 'open',
+          unShow: isClosing && 'close'
+        })
+      }
     >
-      <Head title="Корзина">
-        <Controls onClickHandler={onCloseHandler} >
-          Закрыть
-        </Controls>
-      </Head>
-      <div className="CartModal">
-        {
-          cart.length > 0
-          ? <CartList cart={cart} onDeleteFromCart={onDeleteFromCart} />
-          : <p className="CartModal-empty">Ваша корзина пуста</p>
-        }
+      <div className={cn('overlay')} onClick={onCloseModal}>
+        <div className={cn('content')} onClick={onContentHandler}>
+          <Head title="Корзина">
+            <Controls onClickHandler={onCloseHandler}>
+              Закрыть
+            </Controls>
+          </Head>
+          <div className={cn('list')}>
+            {
+              cart.length > 0
+                ? <CartList
+                  cart={cart}
+                  onDeleteFromCart={onDeleteFromCart}
+                  cartTotalPrice={cartTotalPrice}
+                />
+                : <p className="CartModal-empty">Ваша корзина пуста</p>
+            }
+          </div>
+        </div>
       </div>
-    </Modal>
+    </div>
   );
 };
 
@@ -76,6 +92,7 @@ CartModal.propTypes = {
       count: PropTypes.number,
     }),
   ).isRequired,
+  cartTotalPrice: PropTypes.number,
   onCloseModal: PropTypes.func.isRequired,
   onDeleteFromCart: PropTypes.func,
   isOpen: PropTypes.bool,

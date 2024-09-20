@@ -1,22 +1,26 @@
-.Item {
+.CartItem {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.Item-code {
+.CartItem-code {
   padding: 20px 10px 20px 20px;
 }
 
-.Item-title {
+.CartItem-title {
   padding: 20px 10px;
 }
 
-.Item-price {
+.CartItem-price {
   margin-left: auto;
 }
 
-.Item-actions {
+.CartItem-count {
+  margin-left: 62px;
+}
+
+.CartItem-actions {
   display: flex;
   justify-content: flex-end;
   padding: 20px;
