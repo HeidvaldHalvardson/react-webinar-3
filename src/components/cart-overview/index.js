@@ -7,7 +7,6 @@ import './stlye.css'
 
 const CartOverview = (props) => {
   const {
-    cart,
     cartUniqueCount,
     cartTotalPrice,
     onShowCart = () => {}
