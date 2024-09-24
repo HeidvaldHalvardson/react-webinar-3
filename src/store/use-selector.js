@@ -1,5 +1,5 @@
 import useStore from './use-store';
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { useLayoutEffect, useMemo, useState } from 'react';
 import shallowequal from 'shallowequal';
 
 /**
