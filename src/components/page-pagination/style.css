@@ -1,0 +1,11 @@
+.PagePagination {
+  display: flex;
+  justify-content: flex-end;
+  padding: 22px;
+}
+
+.dots {
+  width: 20px;
+  text-align: center;
+  color: #ccc;
+}
