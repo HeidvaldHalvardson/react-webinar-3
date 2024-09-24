@@ -8,7 +8,7 @@ function Item({ item, onAdd = (_) => {}}) {
   const cn = bem('Item');
 
   const callbacks = {
-    onAdd: e => onAdd(item._id),
+    onAdd: () => onAdd(item._id),
   };
 
   return (

@@ -9,7 +9,7 @@ function ItemBasket({ item, onRemove = (_) => {} }) {
   const cn = bem('ItemBasket');
 
   const callbacks = {
-    onRemove: e => onRemove(item._id),
+    onRemove: () => onRemove(item._id),
   };
 
   return (
