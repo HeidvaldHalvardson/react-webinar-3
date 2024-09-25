@@ -4,29 +4,32 @@ import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from '../../utils';
 import './style.css';
 import {Link, useParams} from "react-router-dom";
+import {useLanguage} from "../../translations/context";
 
 function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
   const cn = bem('BasketTool');
+  const { translation } = useLanguage();
+  const { itemId } = useParams();
 
-  const { itemId } = useParams()
+  const pluralVariants = {
+    one: translation['товар'],
+    few: translation['товара'],
+    many: translation['товаров'],
+  }
 
   return (
     <div className={cn()}>
       <div>
-        {itemId && <Link to={`/`}>Главная</Link>}
+        {itemId && <Link to={`/`}>{translation['Главная'].toString()}</Link>}
       </div>
       <div>
-        <span className={cn('label')}>В корзине:</span>
+        <span className={cn('label')}>{translation['В корзине']}:</span>
         <span className={cn('total')}>
         {amount
-          ? `${amount} ${plural(amount, {
-            one: 'товар',
-            few: 'товара',
-            many: 'товаров',
-          })} / ${numberFormat(sum)} ₽`
-          : `пусто`}
+          ? `${amount} ${plural(amount, pluralVariants)} / ${numberFormat(sum)} ₽`
+          : `${translation['пусто']}`}
       </span>
-        <button onClick={onOpen}>Перейти</button>
+        <button onClick={onOpen}>{translation['Перейти']}</button>
       </div>
     </div>
   );

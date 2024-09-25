@@ -9,11 +9,15 @@ import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import PagePagination from "../../components/page-pagination";
 import ErrorPage from "../error";
+import {useLanguage} from "../../translations/context";
 
 function Main() {
   const store = useStore();
+  const { translation } = useLanguage();
   const { catalogPage } = useParams();
   const navigate = useNavigate();
+
+  console.log(translation)
 
   const select = useSelector(state => ({
     list: state.catalog.list,
@@ -57,7 +61,7 @@ function Main() {
 
   return (
     <PageLayout>
-      <Head title="Магазин" />
+      <Head title={translation['Магазин']} />
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} onItemClick={callbacks.getCatalogItem} />
       <PagePagination currentPage={select.currentPage} totalPages={select.totalPages} setPage={callbacks.setPage} />

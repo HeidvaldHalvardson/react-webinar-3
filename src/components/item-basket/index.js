@@ -5,9 +5,11 @@ import { cn as bem } from '@bem-react/classname';
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import './style.css';
+import {useLanguage} from "../../translations/context";
 
 function ItemBasket({ item, onRemove = (_) => {}, onCloseModal = () => {} }) {
   const cn = bem('ItemBasket');
+  const { translation } = useLanguage()
 
   const callbacks = {
     onRemove: () => onRemove(item._id),
@@ -25,7 +27,7 @@ function ItemBasket({ item, onRemove = (_) => {}, onCloseModal = () => {} }) {
       <div className={cn('title')}>{item.title}</div>
       <div className={cn('right')}>
         <div className={cn('cell')}>{numberFormat(item.price)} ₽</div>
-        <div className={cn('cell')}>{numberFormat(item.amount || 0)} шт</div>
+        <div className={cn('cell')}>{numberFormat(item.amount || 0)} {translation['шт']}</div>
         <div className={cn('cell')}>
           <button onClick={onRemoveHandler}>Удалить</button>
         </div>
