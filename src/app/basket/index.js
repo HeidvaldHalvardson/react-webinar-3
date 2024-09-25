@@ -20,20 +20,22 @@ function Basket() {
     removeFromBasket: useCallback(_id => store.actions.basket.removeFromBasket(_id), [store]),
     // Закрытие любой модалки
     closeModal: useCallback(() => store.actions.modals.close(), [store]),
+    // Выбор конкретного продукта
+    getCatalogItem: useCallback((_id) => store.actions.catalog.getCatalogItem(_id), [store]),
   };
 
   const renders = {
     itemBasket: useCallback(
       item => {
-        return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} />;
+        return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} openCatalogItem={callbacks.getCatalogItem} onCloseModal={callbacks.closeModal} />;
       },
-      [callbacks.removeFromBasket],
+      [callbacks.removeFromBasket, callbacks.getCatalogItem],
     ),
   };
 
   return (
     <ModalLayout title="Корзина" onClose={callbacks.closeModal}>
-      <List list={select.list} renderItem={renders.itemBasket} />
+      <List list={select.list} renderItem={renders.itemBasket} onCloseModal={callbacks.closeModal} />
       <BasketTotal sum={select.sum} />
     </ModalLayout>
   );

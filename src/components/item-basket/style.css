@@ -4,6 +4,9 @@
   justify-content: flex-start;
   transition: background-color 1s;
   padding-left: 10px;
+
+  text-decoration: none;
+  color: inherit;
 }
 
 .ItemBasket-code {
@@ -13,6 +16,10 @@
 .ItemBasket-title {
   width: 100%;
   padding: 20px 10px;
+}
+
+.ItemBasket:hover .ItemBasket-title {
+  text-decoration: underline;
 }
 
 .ItemBasket-right {

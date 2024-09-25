@@ -2,7 +2,7 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-function List({ list, renderItem = {} }) {
+function List({ list, renderItem = (_) => {} }) {
   return (
     <div className="List">
       {list.map(item => (

@@ -3,23 +3,30 @@ import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat } from '../../utils';
 import './style.css';
+import { Link } from "react-router-dom";
 
-function Item({ item, onAdd = (_) => {}}) {
+function Item({ item, onAdd = (_) => {}, onCloseModal = () => {} }) {
   const cn = bem('Item');
 
   const callbacks = {
     onAdd: () => onAdd(item._id),
   };
 
+  const onAddHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    callbacks.onAdd();
+  }
+
   return (
-    <div className={cn()}>
+    <Link to={`/catalog/${item._id}`} onClick={onCloseModal} className={cn()}>
       {/*<div className={cn('code')}>{props.item._id}</div>*/}
       <div className={cn('title')}>{item.title}</div>
       <div className={cn('actions')}>
         <div className={cn('price')}>{numberFormat(item.price)} ₽</div>
-        <button onClick={callbacks.onAdd}>Добавить</button>
+        <button onClick={onAddHandler}>Добавить</button>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -30,6 +37,7 @@ Item.propTypes = {
     price: PropTypes.number,
   }).isRequired,
   onAdd: PropTypes.func,
+  onCloseModal: PropTypes.func,
 };
 
 export default memo(Item);

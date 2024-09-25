@@ -3,22 +3,31 @@ import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from '../../utils';
 import './style.css';
+import {Link, useParams} from "react-router-dom";
 
 function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
   const cn = bem('BasketTool');
+
+  const { itemId } = useParams()
+
   return (
     <div className={cn()}>
-      <span className={cn('label')}>В корзине:</span>
-      <span className={cn('total')}>
+      <div>
+        {itemId && <Link to={`/`}>Главная</Link>}
+      </div>
+      <div>
+        <span className={cn('label')}>В корзине:</span>
+        <span className={cn('total')}>
         {amount
           ? `${amount} ${plural(amount, {
-              one: 'товар',
-              few: 'товара',
-              many: 'товаров',
-            })} / ${numberFormat(sum)} ₽`
+            one: 'товар',
+            few: 'товара',
+            many: 'товаров',
+          })} / ${numberFormat(sum)} ₽`
           : `пусто`}
       </span>
-      <button onClick={onOpen}>Перейти</button>
+        <button onClick={onOpen}>Перейти</button>
+      </div>
     </div>
   );
 }

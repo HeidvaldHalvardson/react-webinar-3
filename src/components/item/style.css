@@ -3,6 +3,9 @@
   justify-content: flex-start;
   transition: background-color 1s;
   padding-left: 10px;
+
+  text-decoration: none;
+  color: inherit;
 }
 
 .Item_selected {
@@ -12,6 +15,10 @@
 
 .Item-code {
   padding: 20px 10px 20px 20px;
+}
+
+.Item:hover .Item-title {
+  text-decoration: underline;
 }
 
 .Item-title {
