@@ -1,4 +1,4 @@
-import {createBrowserRouter, Navigate} from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Main from "../app/main";
 import ErrorPage from "../app/error";
 import CatalogItem from "../components/catalog-item";

@@ -5,7 +5,7 @@ import ModalLayout from '../../components/modal-layout';
 import BasketTotal from '../../components/basket-total';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
-import {useLanguage} from "../../translations/context";
+import { useLanguage } from "../../translations";
 
 function Basket() {
   const store = useStore();

@@ -1,11 +1,11 @@
 import { memo } from 'react';
+import {Link} from "react-router-dom";
 import propTypes from 'prop-types';
 import { numberFormat } from '../../utils';
 import { cn as bem } from '@bem-react/classname';
 import PropTypes from 'prop-types';
-import {Link} from "react-router-dom";
+import { useLanguage } from "../../translations";
 import './style.css';
-import {useLanguage} from "../../translations/context";
 
 function ItemBasket({ item, onRemove = (_) => {}, onCloseModal = () => {} }) {
   const cn = bem('ItemBasket');
@@ -29,7 +29,7 @@ function ItemBasket({ item, onRemove = (_) => {}, onCloseModal = () => {} }) {
         <div className={cn('cell')}>{numberFormat(item.price)} ₽</div>
         <div className={cn('cell')}>{numberFormat(item.amount || 0)} {translation['шт']}</div>
         <div className={cn('cell')}>
-          <button onClick={onRemoveHandler}>Удалить</button>
+          <button onClick={onRemoveHandler}>{translation['Удалить']}</button>
         </div>
       </div>
     </Link>

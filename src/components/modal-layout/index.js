@@ -1,8 +1,8 @@
 import { memo, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
+import { useLanguage } from "../../translations";
 import './style.css';
-import {useLanguage} from "../../translations/context";
 
 function ModalLayout({ title = 'Модалка', onClose = () => {}, children }) {
   const cn = bem('ModalLayout');

@@ -3,7 +3,7 @@ import App from './app';
 import Store from './store';
 import { StoreContext } from './store/context';
 import { BrowserRouter } from "react-router-dom";
-import { LanguageProvider } from "./translations/context";
+import { LanguageProvider } from "./translations";
 
 const store = new Store();
 

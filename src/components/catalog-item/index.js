@@ -1,16 +1,19 @@
 import React, {useCallback, useEffect} from 'react';
+import { useParams } from "react-router-dom";
 import PageLayout from "../page-layout";
 import Head from "../head";
 import BasketTool from "../basket-tool";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
-import {useParams} from "react-router-dom";
 import {numberFormat} from "../../utils";
-import './style.css'
 import ErrorPage from "../../app/error";
+import { useLanguage } from "../../translations";
+import './style.css'
+
 
 const CatalogItem = () => {
   const store = useStore();
+  const { translation } = useLanguage()
   const { itemId } = useParams();
 
   const callbacks = {
@@ -33,10 +36,10 @@ const CatalogItem = () => {
   useEffect(() => {
     callbacks.getCatalogItem(itemId);
     return () => callbacks.clearCurrentItem();
-  }, [store, select.item, callbacks.getCatalogItem]);
+  }, [store, callbacks.getCatalogItem]);
 
 
-  if (!select.item) return <ErrorPage title='Такого товара не существует' />
+  if (!select.item) return <ErrorPage title={translation['Такого товара не существует']} />
 
   return (
     <PageLayout>
@@ -47,22 +50,22 @@ const CatalogItem = () => {
           {select.item.description}
         </div>
         <div>
-          Страна производитель:
+          {translation['Страна производитель']}:
           <span>{select.item.madeIn.title} ({select.item.madeIn.code})</span>
         </div>
         <div>
-          Категория:
+          {translation['Категория']}:
           <span>{select.item.category.title}</span>
         </div>
         <div>
-          Год выпуска:
+          {translation['Год выпуска']}:
           <span>{select.item.edition}</span>
         </div>
         <div className='CatalogItem-price'>
-          Цена: {numberFormat(select.item.price)} ₽
+          {translation['Цена']}: {numberFormat(select.item.price)} ₽
         </div>
         <button onClick={() => callbacks.addToBasket(select.item._id)}>
-          Добавить
+          {translation['Добавить']}
         </button>
       </div>
     </PageLayout>

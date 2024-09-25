@@ -15,6 +15,11 @@ const translation = {
   "Вернуться на главную": "Return to main",
   "Закрыть": "Close",
   "шт": "pcs",
+  "Страна производитель": "Country of origin",
+  "Категория": "Category",
+  "Год выпуска": "Year of edition",
+  "Цена": "Price",
+  "Такого товара не существует": "There is no such product",
 };
 
 export default translation;

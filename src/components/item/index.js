@@ -1,10 +1,10 @@
 import { memo } from 'react';
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat } from '../../utils';
+import { useLanguage } from "../../translations";
 import './style.css';
-import { Link } from "react-router-dom";
-import {useLanguage} from "../../translations/context";
 
 function Item({ item, onAdd = (_) => {}, onCloseModal = () => {} }) {
   const cn = bem('Item');

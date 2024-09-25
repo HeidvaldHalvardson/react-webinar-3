@@ -9,15 +9,13 @@ import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import PagePagination from "../../components/page-pagination";
 import ErrorPage from "../error";
-import {useLanguage} from "../../translations/context";
+import { useLanguage } from "../../translations";
 
 function Main() {
   const store = useStore();
   const { translation } = useLanguage();
   const { catalogPage } = useParams();
   const navigate = useNavigate();
-
-  console.log(translation)
 
   const select = useSelector(state => ({
     list: state.catalog.list,

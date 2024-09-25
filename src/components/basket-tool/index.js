@@ -1,10 +1,10 @@
 import { memo } from 'react';
+import { Link, useParams } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from '../../utils';
+import { useLanguage } from "../../translations";
 import './style.css';
-import {Link, useParams} from "react-router-dom";
-import {useLanguage} from "../../translations/context";
 
 function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
   const cn = bem('BasketTool');
