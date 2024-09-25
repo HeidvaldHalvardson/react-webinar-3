@@ -36,7 +36,7 @@ const CatalogItem = () => {
   useEffect(() => {
     callbacks.getCatalogItem(itemId);
     return () => callbacks.clearCurrentItem();
-  }, [store, callbacks.getCatalogItem]);
+  }, [store, itemId, callbacks.getCatalogItem, callbacks.clearCurrentItem]);
 
 
   if (!select.item) return <ErrorPage title={translation['Такого товара не существует']} />
