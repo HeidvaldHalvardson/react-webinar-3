@@ -12,13 +12,14 @@ class Catalog extends StoreModule {
   initState() {
     return {
       list: [],
+      currentItem: null,
       currentPage: 1,
       totalPages: 0,
     };
   }
 
-  async load() {
-    const skip = (this.getState().currentPage - 1) * ITEMS_PER_PAGE;
+  async load(page) {
+    const skip = (page - 1) * ITEMS_PER_PAGE;
 
     const response = await fetch(`/api/v1/articles?limit=${ITEMS_PER_PAGE}&skip=${skip}&fields=items(_id, title, price),count`);
     const json = await response.json();
@@ -30,16 +31,40 @@ class Catalog extends StoreModule {
         ...this.getState(),
         list: json.result.items,
         totalPages: newTotalPages,
+        currentPage: page,
       },
       'Загружены товары из АПИ',
     );
   }
 
-  setPage(page) {
-    this.setState({
-      ...this.getState(),
-      currentPage: page,
-    })
+  async getCatalogItem(id) {
+    let result = null
+
+    if (sessionStorage.getItem(id)) {
+      result = JSON.parse(sessionStorage.getItem(id));
+    } else {
+      const response = await fetch(`/api/v1/articles/${id}?fields=title,description,edition,price,madeIn(title,code),category(title)`)
+      result = await response.json();
+      sessionStorage.setItem(id, JSON.stringify(result));
+    }
+
+    this.setState(
+      {
+        ...this.getState(),
+        currentItem: result.result,
+      },
+      `Загружен товар ${id}`
+    )
+  }
+
+  clearCurrentItem() {
+    this.setState(
+      {
+        ...this.getState(),
+        currentItem: null,
+      },
+      'Очистка выбранного товара'
+    )
   }
 }
 
