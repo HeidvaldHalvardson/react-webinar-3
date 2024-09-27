@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLanguage } from "../../translations";
+import { useLanguage } from "../../index";
 
 const LanguageSwitcher = () => {
   const { language, changeLanguage } = useLanguage();

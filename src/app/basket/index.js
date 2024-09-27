@@ -29,16 +29,23 @@ function Basket() {
   const renders = {
     itemBasket: useCallback(
       item => {
-        return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} openCatalogItem={callbacks.getCatalogItem} onCloseModal={callbacks.closeModal} />;
+        return <ItemBasket
+          item={item}
+          link={`catalog/${item._id}`}
+          onRemove={callbacks.removeFromBasket}
+          openCatalogItem={callbacks.getCatalogItem}
+          onCloseModal={callbacks.closeModal}
+          translation={translation}
+        />;
       },
       [callbacks.removeFromBasket, callbacks.getCatalogItem],
     ),
   };
 
   return (
-    <ModalLayout title={translation['Корзина']} onClose={callbacks.closeModal}>
+    <ModalLayout title={translation['Корзина']} textButton={translation['Закрыть']} onClose={callbacks.closeModal}>
       <List list={select.list} renderItem={renders.itemBasket} onCloseModal={callbacks.closeModal} />
-      <BasketTotal sum={select.sum} />
+      <BasketTotal sum={select.sum} totalText={translation['Итого']} />
     </ModalLayout>
   );
 }

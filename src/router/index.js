@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Main from "../app/main";
 import ErrorPage from "../app/error";
-import CatalogItem from "../components/catalog-item";
+import CatalogItem from "../app/catalog-item";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +11,6 @@ const router = createBrowserRouter([
   {
     path: '/:catalogPage',
     element: <Main />,
-    errorElement: <ErrorPage />,
   },
   {
     path: '/catalog/:itemId',

@@ -4,12 +4,10 @@ import propTypes from 'prop-types';
 import { numberFormat } from '../../utils';
 import { cn as bem } from '@bem-react/classname';
 import PropTypes from 'prop-types';
-import { useLanguage } from "../../translations";
 import './style.css';
 
-function ItemBasket({ item, onRemove = (_) => {}, onCloseModal = () => {} }) {
+function ItemBasket({ item, link, onRemove = (_) => {}, onCloseModal = () => {}, translation }) {
   const cn = bem('ItemBasket');
-  const { translation } = useLanguage()
 
   const callbacks = {
     onRemove: () => onRemove(item._id),
@@ -22,7 +20,7 @@ function ItemBasket({ item, onRemove = (_) => {}, onCloseModal = () => {} }) {
   }
 
   return (
-    <Link to={`catalog/${item._id}`} onClick={onCloseModal} className={cn()}>
+    <Link to={link} onClick={onCloseModal} className={cn()}>
       {/*<div className={cn('code')}>{props.item._id}</div>*/}
       <div className={cn('title')}>{item.title}</div>
       <div className={cn('right')}>
@@ -37,6 +35,8 @@ function ItemBasket({ item, onRemove = (_) => {}, onCloseModal = () => {} }) {
 }
 
 ItemBasket.propTypes = {
+  translation: PropTypes.objectOf(PropTypes.string),
+  link: PropTypes.string,
   item: PropTypes.shape({
     _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     title: PropTypes.string,

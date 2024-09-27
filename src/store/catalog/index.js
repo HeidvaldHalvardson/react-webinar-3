@@ -56,16 +56,6 @@ class Catalog extends StoreModule {
       `Загружен товар ${id}`
     )
   }
-
-  clearCurrentItem() {
-    this.setState(
-      {
-        ...this.getState(),
-        currentItem: null,
-      },
-      'Очистка выбранного товара'
-    )
-  }
 }
 
 export default Catalog;

@@ -20,6 +20,7 @@ const translation = {
   "Год выпуска": "Year of edition",
   "Цена": "Price",
   "Такого товара не существует": "There is no such product",
+  "Загрузка": "Loading",
 };
 
 export default translation;

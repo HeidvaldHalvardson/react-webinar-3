@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-import LangSwitcher from "../lang-switcher";
+import LangSwitcher from "../../translations/ui/lang-switcher";
 import './style.css';
 
 function Head({ title }) {

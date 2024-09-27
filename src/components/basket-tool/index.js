@@ -1,15 +1,11 @@
 import { memo } from 'react';
-import { Link, useParams } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from '../../utils';
-import { useLanguage } from "../../translations";
 import './style.css';
 
-function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
+function BasketTool({ translation, sum = 0, amount = 0, onOpen = () => {} }) {
   const cn = bem('BasketTool');
-  const { translation } = useLanguage();
-  const { itemId } = useParams();
 
   const pluralVariants = {
     one: translation['товар'],
@@ -19,9 +15,6 @@ function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
 
   return (
     <div className={cn()}>
-      <div>
-        {itemId && <Link to={`/`}>{translation['Главная'].toString()}</Link>}
-      </div>
       <div>
         <span className={cn('label')}>{translation['В корзине']}:</span>
         <span className={cn('total')}>
@@ -36,6 +29,7 @@ function BasketTool({ sum = 0, amount = 0, onOpen = () => {} }) {
 }
 
 BasketTool.propTypes = {
+  translation: PropTypes.objectOf(PropTypes.string),
   onOpen: PropTypes.func.isRequired,
   sum: PropTypes.number,
   amount: PropTypes.number,
