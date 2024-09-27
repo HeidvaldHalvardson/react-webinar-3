@@ -38,7 +38,7 @@ class Catalog extends StoreModule {
   }
 
   async getCatalogItem(id) {
-    let result = null
+    let result;
 
     if (sessionStorage.getItem(id)) {
       result = JSON.parse(sessionStorage.getItem(id));

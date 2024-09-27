@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import PageLayout from "../../components/page-layout";
 import Head from "../../components/head";
-import BasketTool from "../../components/basket-tool";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
 import { useLanguage } from "../../translations";
