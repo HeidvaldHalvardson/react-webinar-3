@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react';
+import {memo, useCallback, useEffect, useMemo} from 'react';
 import useTranslate from '../../hooks/use-translate';
 import useStore from '../../hooks/use-store';
 import useSelector from '../../hooks/use-selector';
@@ -15,16 +15,37 @@ function CatalogFilter() {
   const select = useSelector(state => ({
     sort: state.catalog.params.sort,
     query: state.catalog.params.query,
+    category: state.catalog.params.category,
+    categories: state.catalog.categories,
   }));
 
   const callbacks = {
     // Сортировка
-    onSort: useCallback(sort => store.actions.catalog.setParams({ sort }), [store]),
+    onSort: useCallback(sort => store.actions.catalog.setParams({ sort, page: 1 }), [store]),
     // Поиск
     onSearch: useCallback(query => store.actions.catalog.setParams({ query, page: 1 }), [store]),
     // Сброс
     onReset: useCallback(() => store.actions.catalog.resetParams(), [store]),
+    // Получение списка категорий
+    getCategories: useCallback(() => store.actions.catalog.getCategories(), [store]),
+    // Фильтрация по категориям
+    onFilter: useCallback(category => store.actions.catalog.setParams({ category, page: 1 }), [store]),
   };
+
+  useEffect(() => {
+    callbacks.getCategories();
+  }, []);
+
+  const addOptionsFilter = (categories, parentId = null, indent = '') => {
+    return categories.reduce((acc, category) => {
+      if ((parentId === null && !category.parent) || category.parent?._id === parentId) {
+        acc.push({value: category._id, title: category.title, indent});
+        acc.push(...addOptionsFilter(categories, category._id, indent + '-'))
+      }
+
+      return acc
+    }, [])
+  }
 
   const options = {
     sort: useMemo(
@@ -36,12 +57,20 @@ function CatalogFilter() {
       ],
       [],
     ),
+    filter: useMemo(
+      () => [
+        { value: '', title: 'Все' },
+        ...addOptionsFilter(select.categories)
+      ],
+      [addOptionsFilter]
+    )
   };
 
   const { t } = useTranslate();
 
   return (
     <SideLayout padding="medium">
+      <Select options={options.filter} value={select.category} onChange={callbacks.onFilter} />
       <Select options={options.sort} value={select.sort} onChange={callbacks.onSort} />
       <Input
         value={select.query}

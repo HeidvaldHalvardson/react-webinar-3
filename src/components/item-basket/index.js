@@ -5,34 +5,34 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-function ItemBasket(props = { onRemove: () => {}, labelCurr: '₽', labelUnit: 'шт', labelDelete: 'Удалить' }) {
+function ItemBasket({ onRemove = (_) => {}, labelCurr = '₽', labelUnit = 'шт', labelDelete = 'Удалить', item, link }) {
   const cn = bem('ItemBasket');
 
   const callbacks = {
-    onRemove: () => props.onRemove(props.item._id),
+    onRemove: () => onRemove(item._id),
   };
 
   return (
     <div className={cn()}>
-      {/*<div className={cn('code')}>{props.item._id}</div>*/}
+      {/*<div className={cn('code')}>{item._id}</div>*/}
       <div className={cn('title')}>
-        {props.link ? (
-          <Link to={props.link} onClick={props.onLink}>
-            {props.item.title}
+        {link ? (
+          <Link to={link} onClick={onLink}>
+            {item.title}
           </Link>
         ) : (
-          props.item.title
+          item.title
         )}
       </div>
       <div className={cn('right')}>
         <div className={cn('cell')}>
-          {numberFormat(props.item.price)} {props.labelCurr}
+          {numberFormat(item.price)} {labelCurr}
         </div>
         <div className={cn('cell')}>
-          {numberFormat(props.item.amount || 0)} {props.labelUnit}
+          {numberFormat(item.amount || 0)} {labelUnit}
         </div>
         <div className={cn('cell')}>
-          <button onClick={callbacks.onRemove}>{props.labelDelete}</button>
+          <button onClick={callbacks.onRemove}>{labelDelete}</button>
         </div>
       </div>
     </div>
