@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat } from '../../utils';
@@ -9,7 +9,7 @@ function Item(props = { onAdd: () => {}, labelCurr: '₽', labelAdd: 'Добав
   const cn = bem('Item');
 
   const callbacks = {
-    onAdd: e => props.onAdd(props.item._id),
+    onAdd: () => props.onAdd(props.item._id),
   };
 
   return (

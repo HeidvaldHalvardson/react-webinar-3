@@ -1,5 +1,4 @@
-import { memo, useCallback } from 'react';
-import propTypes from 'prop-types';
+import { memo } from 'react';
 import { numberFormat } from '../../utils';
 import { cn as bem } from '@bem-react/classname';
 import PropTypes from 'prop-types';
@@ -10,7 +9,7 @@ function ItemBasket(props = { onRemove: () => {}, labelCurr: '₽', labelUnit: '
   const cn = bem('ItemBasket');
 
   const callbacks = {
-    onRemove: e => props.onRemove(props.item._id),
+    onRemove: () => props.onRemove(props.item._id),
   };
 
   return (
