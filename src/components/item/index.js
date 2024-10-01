@@ -5,7 +5,7 @@ import { numberFormat } from '../../utils';
 import './style.css';
 import { Link } from 'react-router-dom';
 
-function Item(props) {
+function Item(props = { onAdd: () => {}, labelCurr: '₽', labelAdd: 'Добавить'}) {
   const cn = bem('Item');
 
   const callbacks = {
@@ -38,12 +38,6 @@ Item.propTypes = {
   onAdd: PropTypes.func,
   labelCurr: PropTypes.string,
   labelAdd: PropTypes.string,
-};
-
-Item.defaultProps = {
-  onAdd: () => {},
-  labelCurr: '₽',
-  labelAdd: 'Добавить',
 };
 
 export default memo(Item);

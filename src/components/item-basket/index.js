@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-function ItemBasket(props) {
+function ItemBasket(props = { onRemove: () => {}, labelCurr: '₽', labelUnit: 'шт', labelDelete: 'Удалить' }) {
   const cn = bem('ItemBasket');
 
   const callbacks = {
@@ -53,13 +53,6 @@ ItemBasket.propTypes = {
   labelCurr: PropTypes.string,
   labelDelete: PropTypes.string,
   labelUnit: PropTypes.string,
-};
-
-ItemBasket.defaultProps = {
-  onRemove: () => {},
-  labelCurr: '₽',
-  labelUnit: 'шт',
-  labelDelete: 'Удалить',
 };
 
 export default memo(ItemBasket);

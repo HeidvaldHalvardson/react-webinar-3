@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
 
-function Pagination(props) {
+function Pagination(props = { page: 1, limit: 10, count: 1000, indent: 1 }) {
   // Количество страниц
   const length = Math.ceil(props.count / Math.max(props.limit, 1));
 
@@ -56,13 +56,6 @@ Pagination.propTypes = {
   indent: PropTypes.number,
   onChange: PropTypes.func,
   makeLink: PropTypes.func,
-};
-
-Pagination.defaultProps = {
-  page: 1,
-  limit: 10,
-  count: 1000,
-  indent: 1,
 };
 
 export default memo(Pagination);
