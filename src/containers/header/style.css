@@ -1,0 +1,10 @@
+.Header {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Header-user {
+  margin-right: 20px;
+}

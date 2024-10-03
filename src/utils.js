@@ -33,3 +33,16 @@ export function codeGenerator(start = 0) {
 export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
 }
+
+export const getAuthToken = () => {
+  let authToken = ''
+  let cookieArr = document.cookie.split(";");
+
+  cookieArr.forEach(cookie => {
+    if (cookie.includes('token')) {
+      authToken = cookie.split('=')[1];
+    }
+  })
+
+  return authToken;
+}

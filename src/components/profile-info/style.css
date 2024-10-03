@@ -1,0 +1,22 @@
+.ProfileInfo {
+  padding: 20px;
+}
+
+.ProfileInfo-title {
+  margin: 0 0 30px;
+}
+
+.ProfileInfo-description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ProfileInfo-description p {
+  margin: 0;
+}
+
+.ProfileInfo-description p span {
+  font-weight: 700;
+  margin-left: 5px;
+}
