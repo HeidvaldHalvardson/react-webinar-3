@@ -16,7 +16,7 @@ function CatalogFilter() {
     sort: state.catalog.params.sort,
     query: state.catalog.params.query,
     category: state.catalog.params.category,
-    categories: state.catalog.categories,
+    categories: state.categories.data,
   }));
 
   const callbacks = {
@@ -27,7 +27,7 @@ function CatalogFilter() {
     // Сброс
     onReset: useCallback(() => store.actions.catalog.resetParams(), [store]),
     // Получение списка категорий
-    getCategories: useCallback(() => store.actions.catalog.getCategories(), [store]),
+    getCategories: useCallback(() => store.actions.categories.getCategories(), [store]),
     // Фильтрация по категориям
     onFilter: useCallback(category => store.actions.catalog.setParams({ category, page: 1 }), [store]),
   };
@@ -40,7 +40,7 @@ function CatalogFilter() {
     return categories.reduce((acc, category) => {
       if ((parentId === null && !category.parent) || category.parent?._id === parentId) {
         acc.push({value: category._id, title: category.title, indent});
-        acc.push(...addOptionsFilter(categories, category._id, indent + '-'))
+        acc.push(...addOptionsFilter(categories, category._id, indent + '- '))
       }
 
       return acc

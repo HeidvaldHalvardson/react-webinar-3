@@ -5,12 +5,13 @@ import LocaleSelect from "../../containers/locale-select";
 import Navigation from "../../containers/navigation";
 import useTranslate from "../../hooks/use-translate";
 import ProfileInfo from "../../components/profile-info";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useSelector from "../../hooks/use-selector";
 import Spinner from "../../components/spinner";
 
 const Profile = () => {
   const navigate = useNavigate();
+  const location = useLocation()
   const { t } = useTranslate();
 
   const select = useSelector(state => ({
@@ -21,7 +22,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (!select.isAuth) {
-      navigate('/login')
+      navigate('/login', { state: { from: location } })
     }
   }, [select.isAuth]);
 

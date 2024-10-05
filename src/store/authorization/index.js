@@ -83,7 +83,7 @@ class AuthorizationState extends StoreModule {
       }
 
       this.store.actions.user.saveUserData({})
-      document.cookie = 'token='
+      document.cookie = 'token=; path=/;'
 
       this.setState(
         {
@@ -103,6 +103,13 @@ class AuthorizationState extends StoreModule {
         'Ошибка выхода из профиля',
       );
     }
+  }
+
+  clearError() {
+    this.setState({
+      ...this.getState(),
+      error: ''
+    })
   }
 }
 
