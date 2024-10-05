@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import './style.css';
@@ -8,7 +8,7 @@ const AuthorizationControls = (props) => {
     isAuth,
     signOut,
     signIn,
-    userName,
+    userName = '',
     signInButton = 'Вход',
     signOutButton = 'Выход',
     link='/profile'
@@ -28,14 +28,14 @@ const AuthorizationControls = (props) => {
   );
 };
 
-AuthorizationControls.PropTypes = {
+AuthorizationControls.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   signOut: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
-  userName: PropTypes.string.isRequired,
+  userName: PropTypes.string,
   signInButton: PropTypes.string,
   signOutButton: PropTypes.string,
   link: PropTypes.string,
 }
 
-export default AuthorizationControls;
+export default memo(AuthorizationControls);
