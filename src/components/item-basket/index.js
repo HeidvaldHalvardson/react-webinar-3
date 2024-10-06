@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-function ItemBasket({ onRemove = (_) => {}, labelCurr = '₽', labelUnit = 'шт', labelDelete = 'Удалить', item, link }) {
+function ItemBasket({ onRemove = (_) => {}, labelCurr = '₽', labelUnit = 'шт', labelDelete = 'Удалить', item, link, onLink }) {
   const cn = bem('ItemBasket');
 
   const callbacks = {
