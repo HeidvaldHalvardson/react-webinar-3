@@ -4,11 +4,18 @@ class APIService {
    * @param config {Object}
    */
   constructor(services, config = {}) {
+    const storageLang = window.localStorage.getItem('lang') !== 'undefined' ? window.localStorage.getItem('lang') : undefined
+
     this.services = services;
     this.config = config;
     this.defaultHeaders = {
       'Content-Type': 'application/json',
+      'Accept-Language': storageLang || services.i18n.getLang() || 'ru',
     };
+
+    this.services.i18n.subscribe(lang => {
+      this.setHeader('Accept-Language', lang)
+    })
   }
 
   /**

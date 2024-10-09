@@ -14,11 +14,25 @@
     "other": "articles"
   },
   "article.add": "Add",
+  "article.country": "Country",
+  "article.category": "Category",
+  "article.year": "Year",
+  "article.price": "Price",
+  "article.comments": "Comments",
   "filter.reset": "Reset",
   "auth.title": "Sign In",
   "auth.login": "Login",
   "auth.password": "Password",
   "auth.signIn": "Sign in",
   "session.signIn": "Sign In",
-  "session.signOut": "Sign Out"
+  "session.signOut": "Sign Out",
+  "filter.sort.order": "By Order",
+  "filter.sort.title": "By Title",
+  "filter.sort.price": "Price: High to Low",
+  "filter.sort.edition": "Edition",
+  "filter.allCategories": "All",
+  "filter.search": "Search",
+  "profile.title": "Profile",
+  "profile.name": "Name",
+  "profile.phone": "Phone"
 }

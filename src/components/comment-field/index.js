@@ -65,10 +65,14 @@ const CommentField = (
 };
 
 CommentField.propTypes = {
+  isOpen: PropTypes.bool,
+  placeholder: PropTypes.string,
   addComment: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  text: PropTypes.string,
-  isAnswer: PropTypes.bool,
+  id: PropTypes.string.isRequired,
+  isAuth: PropTypes.bool,
+  username: PropTypes.string,
+  className: PropTypes.string,
+  onClose: PropTypes.func
 };
 
 export default CommentField;

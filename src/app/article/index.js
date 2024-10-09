@@ -24,11 +24,13 @@ function Article() {
 
   const params = useParams();
 
+  const { t, lang } = useTranslate();
+
   useInit(() => {
     //store.actions.article.load(params.id);
     dispatch(articleActions.load(params.id));
     dispatch(commentsActions.load(params.id))
-  }, [params.id]);
+  }, [params.id, lang]);
 
   const selectRedux = useSelectorRedux(
     state => ({
@@ -44,8 +46,6 @@ function Article() {
   const select = useSelector(state => ({
     exists: state.session.exists
   }))
-
-  const { t } = useTranslate();
 
   const callbacks = {
     // Добавление в корзину
@@ -64,7 +64,7 @@ function Article() {
         <ArticleCard article={selectRedux.article} onAdd={callbacks.addToBasket} t={t} />
       </Spinner>
       <Spinner active={selectRedux.commentsWaiting}>
-        <CommentsList comments={selectRedux.comments} count={selectRedux.count} addComment={callbacks.addComment} isAuth={select.exists} params={params} />
+        <CommentsList comments={selectRedux.comments} count={selectRedux.count} addComment={callbacks.addComment} isAuth={select.exists} params={params} t={t} lang={lang} />
       </Spinner>
     </PageLayout>
   );
