@@ -1,0 +1,35 @@
+.CommentItem-head {
+  margin-bottom: 10px;
+
+  display: flex;
+  gap: 10px;
+
+  font-size: 12px;
+}
+
+.CommentItem-username {
+  font-weight: 700;
+}
+
+.CommentItem-date {
+  color: #666;
+}
+
+.CommentItem-text {
+  font-size: 14px;
+
+  margin-bottom: 10px;
+}
+
+.CommentItem-button {
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  color: #0087e9;
+  padding: 0;
+  cursor: pointer;
+}
+
+.CommentItem-field {
+  margin-top: 30px;
+}

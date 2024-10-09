@@ -1,0 +1,43 @@
+.CommentField-title {
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+.CommentField-field {
+  width: 100%;
+  padding: 4px 5px;
+  box-sizing: border-box;
+  min-height: 80px;
+  margin-bottom: 5px;
+}
+
+.CommentField-controls {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.CommentField-controls button {
+  font-size: inherit;
+}
+
+.CommentField-notAuth {
+  font-size: 12px;
+}
+
+.CommentField-notAuth button {
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.CommentField-loginButton {
+  color: #0087e9;
+}
+
+.CommentField-cancelButton {
+  margin-left: 5px;
+  color: #666;
+}
