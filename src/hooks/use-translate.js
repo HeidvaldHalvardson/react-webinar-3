@@ -5,32 +5,30 @@ import {useEffect, useMemo, useState} from "react";
  * Хук возвращает функцию для локализации текстов, код языка и функцию его смены
  */
 export default function useTranslate() {
-  const { i18n: i18nService }  = useServices()
-  const [data, setData] = useState(i18nService.getLang());
+  const { i18n }  = useServices()
+  const [data, setData] = useState(i18n.getLang());
 
   useEffect(() => {
     const listener = () => {
-      setData(i18nService.getLang())
+      setData(i18n.getLang())
     }
 
-    i18nService.subscribe(listener);
+    i18n.subscribe(listener);
 
-    return () => i18nService.unsubscribe(listener);
-  }, [i18nService]);
+    return () => i18n.unsubscribe(listener);
+  }, [i18n]);
 
-  const i18n = useMemo(
+  return useMemo(
     () => ({
       // Код локали
       lang: data,
       // Функция для смены локали
       setLang: (lang) => {
-        i18nService.setLang(lang);
+        i18n.setLang(lang);
       },
       // Функция для локализации текстов с замыканием на код языка
-      t: (text, number) => i18nService.t(text, number),
+      t: (text, number) => i18n.t(text, number),
     }),
-    [i18nService.getLang()],
+    [i18n.getLang()],
   );
-
-  return i18n
 }
