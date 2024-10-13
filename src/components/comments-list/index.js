@@ -30,12 +30,8 @@ const CommentsList = ({
 
       let padding = 30 * (level - 1)
 
-      if (padding > 90) {
-        padding = 30 + (20 * (level - 1));
-      }
-
-      if (padding > 250) {
-        padding = 250
+      if (padding > 270) {
+        padding = 270
       }
 
       return {
@@ -102,7 +98,7 @@ const CommentsList = ({
                     username={comment.username}
                     isOpen={commentOpen === comment.parent._id}
                     padding={comment.padding}
-                    placeholder={t('comments.data.text')}
+                    placeholder={t('comments.placeholder')}
                     t={t}
                   />
                 )
@@ -110,7 +106,7 @@ const CommentsList = ({
             </div>
           ))
         }
-        <CommentField isAuth={isAuth} addComment={addComment} id={params.id} isOpen={!commentOpen} placeholder={t('comments.data.text')} t={t} />
+        <CommentField isAuth={isAuth} addComment={addComment} id={params.id} isOpen={!commentOpen} placeholder={t('comments.placeholder')} t={t} />
       </div>
     </div>
   );

@@ -9,6 +9,9 @@
   box-sizing: border-box;
   min-height: 80px;
   margin-bottom: 5px;
+
+  font-family: inherit;
+  font-size: 14px;
 }
 
 .CommentField-controls {

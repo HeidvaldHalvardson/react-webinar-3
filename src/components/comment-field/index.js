@@ -19,8 +19,7 @@ const CommentField = (
 ) => {
 
   const cn = bem('CommentField');
-  const initData = username ? `${t('comments.data.reply')} ${username} ` : t('comments.data.text')
-  const [data, setData] = useState(initData);
+  const [data, setData] = useState('');
   const navigate = useNavigate();
   const location = useLocation()
   const textareaRef = useRef(null)
@@ -31,7 +30,7 @@ const CommentField = (
     if (sendData) {
       addComment(id, data, username ? 'comment' : 'article')
       if (!username) {
-        setData(initData);
+        setData('');
       }
     } else {
       textareaRef.current.focus()
@@ -44,12 +43,11 @@ const CommentField = (
 
   useEffect(() => {
     if (username && isOpen && textareaRef.current) {
-      textareaRef.current.focus()
       textareaRef.current.setSelectionRange(data.length, data.length)
       textareaRef.current.scrollIntoView({ behavior: "smooth", block: "center" })
     }
 
-    return () => setData(initData)
+    return () => setData('')
   }, [username, isOpen, id]);
 
   useEffect(() => {
