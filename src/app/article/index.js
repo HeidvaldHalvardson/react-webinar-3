@@ -1,4 +1,4 @@
-import React, {memo, useCallback} from 'react';
+import React, { memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import useStore from '../../hooks/use-store';
 import useTranslate from '../../hooks/use-translate';
@@ -44,7 +44,8 @@ function Article() {
   );
 
   const select = useSelector(state => ({
-    exists: state.session.exists
+    exists: state.session.exists,
+    currentUser: state.session.user.profile?.name
   }))
 
   const callbacks = {
@@ -64,7 +65,16 @@ function Article() {
         <ArticleCard article={selectRedux.article} onAdd={callbacks.addToBasket} t={t} />
       </Spinner>
       <Spinner active={selectRedux.commentsWaiting}>
-        <CommentsList comments={selectRedux.comments} count={selectRedux.count} addComment={callbacks.addComment} isAuth={select.exists} params={params} t={t} lang={lang} />
+        <CommentsList
+          comments={selectRedux.comments}
+          currentUser={select.currentUser}
+          count={selectRedux.count}
+          addComment={callbacks.addComment}
+          isAuth={select.exists}
+          params={params}
+          t={t}
+          lang={lang}
+        />
       </Spinner>
     </PageLayout>
   );

@@ -34,5 +34,15 @@
   "filter.search": "Search",
   "profile.title": "Profile",
   "profile.name": "Name",
-  "profile.phone": "Phone"
+  "profile.phone": "Phone",
+  "comments.reply": "Reply",
+  "comments.data.reply": "My reply for",
+  "comments.data.text": "Text",
+  "comments.newReply": "New reply",
+  "comments.newComment": "New comment",
+  "comments.cancel": "Cancel",
+  "comments.send": "Send",
+  "comments.signIn": "Sing in",
+  "comments.able.comment": " in to be able to comment",
+  "comments.able.reply": " in to be able to reply."
 }

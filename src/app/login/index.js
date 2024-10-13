@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import useTranslate from '../../hooks/use-translate';
 import Head from '../../components/head';
 import LocaleSelect from '../../containers/locale-select';
@@ -18,6 +18,7 @@ function Login() {
   const location = useLocation();
   const navigate = useNavigate();
   const store = useStore();
+  const back = location.state?.back || '/';
 
   useInit(() => {
     store.actions.session.resetErrors();
@@ -26,6 +27,7 @@ function Login() {
   const select = useSelector(state => ({
     waiting: state.session.waiting,
     errors: state.session.errors,
+    exists: state.session.exists
   }));
 
   const [data, setData] = useState({
@@ -49,12 +51,26 @@ function Login() {
             location.state?.back && location.state?.back !== location.pathname
               ? location.state?.back
               : '/';
-          navigate(back);
+
+          const state = {}
+
+          if (location.state?.commentId) {
+            state.commentId = location.state?.commentId;
+            state.username = location.state?.username ? location.state.username : null
+          }
+
+          navigate(back, { state });
         });
       },
       [data, location.state],
     ),
   };
+
+  useEffect(() => {
+    if (select.exists) {
+      navigate(back);
+    }
+  }, [select.exists, navigate, back])
 
   return (
     <PageLayout>

@@ -1,7 +1,5 @@
 import simplifyErrors from "../../utils/simplify-errors";
 
-const LIMIT_COMMENTS = 100
-
 export default {
   load: id => {
     return async (dispatch, getState, services) => {
@@ -12,7 +10,7 @@ export default {
           url: `/api/v1/comments?${new URLSearchParams({
             'search[parent]': id,
             fields: 'items(_id,text,dateCreate,parent,author(profile(name))),count',
-            limit: LIMIT_COMMENTS
+            limit: '*',
           })}`
         })
 

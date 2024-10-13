@@ -141,7 +141,7 @@ class SessionState extends StoreModule {
    * Сброс ошибок авторизации
    */
   resetErrors() {
-    this.setState({ ...this.initState(), errors: null });
+    this.setState({ ...this.getState(), errors: null });
   }
 }
 

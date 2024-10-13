@@ -22,15 +22,16 @@
 }
 
 .CommentField-notAuth {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .CommentField-notAuth button {
   border: none;
   background-color: transparent;
-  font-size: 12px;
+  font-size: inherit;
   padding: 0;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .CommentField-loginButton {

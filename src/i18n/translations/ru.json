@@ -36,5 +36,15 @@
   "filter.search": "Поиск",
   "profile.title": "Профиль",
   "profile.name": "Имя",
-  "profile.phone": "Телефон"
+  "profile.phone": "Телефон",
+  "comments.reply": "Ответить",
+  "comments.data.reply": "Мой ответ для",
+  "comments.data.text": "Текст",
+  "comments.newReply": "Новый ответ",
+  "comments.newComment": "Новый комментарий",
+  "comments.cancel": "Отмена",
+  "comments.send": "Отправить",
+  "comments.signIn": "Войдите",
+  "comments.able.comment": ", чтобы иметь возможность комментировать",
+  "comments.able.reply": ", чтобы иметь возможность ответить."
 }
